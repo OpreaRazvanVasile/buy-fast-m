@@ -6,6 +6,13 @@ import
  signInWithRedirect
  } from "firebase/auth"
 
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+
+} from "firebase/firestore"
 const firebaseConfig = {
     apiKey: "AIzaSyCyRfRj44mCA5CICrX3t56lqmiY339r8A4",
     authDomain: "buyfast-db.firebaseapp.com",
@@ -24,8 +31,6 @@ const firebaseConfig = {
     prompt:"select_account"
   })
 
-
-
   
   export   const auth=getAuth()
   export  const singInWithGoogle=async function(){
@@ -37,6 +42,35 @@ const firebaseConfig = {
     console.error(err.message)
   }
  
+}
+
+export const redirectSingIn=async function(){
+    return await signInWithRedirect(auth,provaider)
+}
+
+export const db=getFirestore()//fierstore DataBase
+
+export const createUsersDocument=async function(userAuth){
+    const docRef=doc(db,'users',userAuth.uid)
+    console.log(docRef)
+    const docSnapShot=await getDoc(docRef)
+    console.log(docSnapShot.exists())
+
+    try{
+    if(!docSnapShot.exists()){
+        console.log(userAuth)
+        const{displayName,email}=userAuth
+        const setdate=new Date()
+        const doc=await setDoc(docRef,{displayName,email,date:setdate})
+    
+
+    }
+}
+ catch(err){
+    console.error(err.message)
+}
+
+
 }
 
 
