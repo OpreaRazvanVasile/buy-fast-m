@@ -3,7 +3,8 @@ import
  {getAuth,
  signInWithPopup,
  GoogleAuthProvider,
- signInWithRedirect
+ signInWithRedirect,
+ createUserWithEmailAndPassword
  } from "firebase/auth"
 
 import {
@@ -70,6 +71,12 @@ export const createUsersDocument=async function(userAuth){
     console.error(err.message)
 }
 
+
+}
+
+export const createUserAuthWithEmail= async(email,password,confirmPassword)=>{
+if(!password===confirmPassword)return 
+return await createUserAuthWithEmail(auth,email,password)
 
 }
 
