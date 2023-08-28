@@ -1,7 +1,7 @@
 import { useEffect,useState} from "react"
 import { singInWithGoogle,createUsersDocument,redirectSingIn,auth} from "../../utils/fierbase/fierbase.utils"
 import { getRedirectResult } from "firebase/auth"
-import SingUp from "../sing-up/sing-up.componet"
+import SignUp from "../sign-up/sign-up.componet"
 
 
 
@@ -37,8 +37,8 @@ const logWithGoogle=async function(){
 
         <button onClick={logWithGoogle}>Sing In With Google</button>
         <button onClick={async()=>await redirectSingIn()}>Sing In With Redirect</button>
-       
-        <SingUp/>
+     
+        <SignUp/>
     </div>
     )
 }

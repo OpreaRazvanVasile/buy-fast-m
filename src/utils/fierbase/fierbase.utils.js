@@ -5,6 +5,7 @@ import
  GoogleAuthProvider,
  signInWithRedirect,
  createUserWithEmailAndPassword
+
  } from "firebase/auth"
 
 import {
@@ -12,7 +13,7 @@ import {
     doc,
     getDoc,
     setDoc,
-
+   
 } from "firebase/firestore"
 const firebaseConfig = {
     apiKey: "AIzaSyCyRfRj44mCA5CICrX3t56lqmiY339r8A4",
@@ -74,11 +75,21 @@ export const createUsersDocument=async function(userAuth){
 
 }
 
-export const createUserAuthWithEmail= async(email,password,confirmPassword)=>{
-if(!password===confirmPassword)return 
-return await createUserAuthWithEmail(auth,email,password)
+export const createAuthWithEmail=async(email,password)=>{
+  if(!email||!password)return
 
+try{
+
+  return  await createUserWithEmailAndPassword(auth,email,password)
 }
 
+catch(err){
+  console.error(err.message)
+}
+  
 
+
+ 
+
+}
 
