@@ -71,14 +71,14 @@ const SingIn=()=>{
         return (
         <div className="sign-in-container">
             
-            <h2>Don't have an account?</h2>
-            <span>Sign up with email and password</span>
+            <h2>Already have an account?</h2>
+            <span>Sign in with email and password</span>
 
         <form onSubmit={submitHandler}>
         <InputForm label="Email" type="email" required name="email" onChange={changeHandler} value={email}></InputForm>
         <InputForm label="Password" type="password"required name="password"value={password} onChange={changeHandler}></InputForm>
         <div className="btn-container">
-        <Button type='submit' children='SingIn'/>
+        <Button type='submit' children='Sign In'/>
         <Button type='button' typeButton='google'  onClick={logWithGoogle} children='Google'/>
         <Button type='button' typeButton='redirect' children='Redirect' onClick={async()=>await redirectSingIn()}/>
         </div>
