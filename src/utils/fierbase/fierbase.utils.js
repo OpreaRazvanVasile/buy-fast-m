@@ -4,7 +4,9 @@ import
  signInWithPopup,
  GoogleAuthProvider,
  signInWithRedirect,
- createUserWithEmailAndPassword
+ createUserWithEmailAndPassword,
+ signInWithEmailAndPassword
+
 
  } from "firebase/auth"
 
@@ -13,6 +15,7 @@ import {
     doc,
     getDoc,
     setDoc,
+   
    
 } from "firebase/firestore"
 const firebaseConfig = {
@@ -84,7 +87,45 @@ try{
 }
 
 catch(err){
-  console.error(err.message)
+
+  if(err.code==='auth/email-already-in-use'){
+    alert('Email already exists')
+  }
+  else if(err.code==='auth/weak-password'){
+    alert( 'Password should be at least 6 characters')
+  }
+  else {
+    alert(err.message)
+  }
+}
+  
+
+
+ 
+
+}
+
+export const singInWithEmail=async(email,password)=>{
+  if(!email||!password)return
+
+try{
+
+  return  await signInWithEmailAndPassword(auth,email,password)
+}
+
+catch(err){
+
+ console.log(err)
+ if(err.code==='auth/user-not-found'){
+  alert("User are not found in the datebase")
+ }
+ else if(err.code==='auth/wrong-password'){
+  alert("Password its wrong")
+ }
+ else {
+  alert(err.message)
+ }
+ 
 }
   
 
