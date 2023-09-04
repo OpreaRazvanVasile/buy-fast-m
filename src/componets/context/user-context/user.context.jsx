@@ -1,5 +1,9 @@
 
-import { createContext,useState } from "react";
+import { createContext,useState,useEffect } from "react";
+import {signOutUser } from "../../../utils/fierbase/fierbase.utils";
+import { onAuthStateChanged } from "firebase/auth";
+import { authStateChangedListener } from "../../../utils/fierbase/fierbase.utils";
+
 
 export const UserContext=createContext({
    currnetUser:null,
@@ -7,9 +11,20 @@ export const UserContext=createContext({
 })
 
 export const UserProvider=({children})=>{
+   const[currnetUser,setCurrentUser]=useState(null)
+   const value={currnetUser,setCurrentUser}
+ 
+   useEffect(()=>{
+      const unsubsribe=authStateChangedListener((users)=>{
+        
+           setCurrentUser(users)
 
-    const[currnetUser,setCurrentUser]=useState(null)
-     const value={currnetUser,setCurrentUser}
+         
+      })
+      return unsubsribe
+
+
+   },[])
    return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 
 }

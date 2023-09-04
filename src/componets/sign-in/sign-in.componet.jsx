@@ -1,6 +1,7 @@
 
  import { useEffect,useState,useContext} from "react"
- import { UserContext } from "../context/user-context/user.context"
+  import { UserContext } from "../context/user-context/user.context"
+
 
 import InputForm from "../input-form/input-form.componet"
  import Button from "../button/button.componet"
@@ -25,16 +26,19 @@ const defaultInputData={
 
 const SingIn=()=>{
     const[formInputData,setFormInputData]=useState(defaultInputData)
-    const {setCurrentUser}=useContext(UserContext)
+     const {currnetUser,setCurrentUser}=useContext(UserContext)
     
     const {email,password}=formInputData
         useEffect(()=>{
         const redirectResponse=async function(){
+            
     
             const response= await getRedirectResult(auth)
             if(response){
                 const createDocumentDB=await createUsersDocument(response.user)  
+                
             }
+        
         } 
         redirectResponse()
     
@@ -42,12 +46,14 @@ const SingIn=()=>{
     },[])
         
     const logWithGoogle=async function(){
-        
+        if (currnetUser) return signOutAlert(); 
+
         const response=await singInWithGoogle()
         const createDocumentDB=await createUsersDocument(response.user)
          return createDocumentDB
         
       }
+
          
       
       const changeHandler=function(event){
@@ -63,11 +69,11 @@ const SingIn=()=>{
     
     const submitHandler=async(e)=>{
     e.preventDefault()
-
+        if(currnetUser) return signOutAlert() ;
         const {user}=await  singInWithEmail(email,password)
-        setCurrentUser(user)
+     
     
-
+         
         
         
         setFormInputData(defaultInputData)
@@ -76,6 +82,24 @@ const SingIn=()=>{
        
     
 }
+ 
+ const signOutAlert=()=>alert(`you must log out of the  ${currnetUser.email.slice(0,6)} account`.toLocaleUpperCase())
+
+ 
+  const signInWithRedirect=async()=>{
+       if(!currnetUser) {
+           await redirectSingIn();
+
+       } 
+       else {
+        
+        signOutAlert()
+       }
+    
+
+    
+
+  }
     
         return (
         <div className="sign-in-container">
@@ -89,7 +113,7 @@ const SingIn=()=>{
         <div className="btn-container">
         <Button type='submit' children='Sign In'/>
         <Button type='button' typeButton='google'  onClick={logWithGoogle} children='Google'/>
-        <Button type='button' typeButton='redirect' children='Redirect' onClick={async()=>await redirectSingIn()}/>
+        <Button type='button' typeButton='redirect' children='Redirect' onClick={signInWithRedirect}/>
         </div>
         </form>
       

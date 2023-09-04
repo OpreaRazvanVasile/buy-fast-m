@@ -3,21 +3,17 @@ import { Outlet } from "react-router";
 import { Link } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "./crown.svg";
 import { UserContext } from "../../componets/context/user-context/user.context";
-import { useState,useContext, Fragment, useEffect  } from "react";
+import {useContext, Fragment } from "react";
 import { signOutUser } from "../../utils/fierbase/fierbase.utils";
-import { getDoc } from "firebase/firestore";
+
 
 import './navigation.styles.scss'
 
 const Navigation = () => {
      
-      const{currnetUser,setCurrentUser}=useContext(UserContext)
-      console.log(currnetUser)
-     const signOutHandler=async()=>{
-       await signOutUser()
-       setCurrentUser(null)
-
-     }
+      const{currnetUser}=useContext(UserContext)
+      
+    
      const userNameOnMauseOver=(e)=>{
         console.log(e.target.textContent)
         const target= e.target
@@ -47,7 +43,7 @@ const Navigation = () => {
                 </Link>
                 <div className="nav-links-container">
                     {currnetUser?<Link className="nav-link"  
-                     to='/auth' onMouseOver={userNameOnMauseOver} onClick={signOutHandler}>SIGN OUT </Link>:
+                     to='/auth' onMouseOver={userNameOnMauseOver} onClick={signOutUser}>SIGN OUT </Link>:
                     <Link className="nav-link"  to='/auth' >SIGN IN</Link>
                     }
                    

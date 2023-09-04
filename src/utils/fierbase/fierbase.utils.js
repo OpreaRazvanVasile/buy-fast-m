@@ -6,7 +6,8 @@ import
  signInWithRedirect,
  createUserWithEmailAndPassword,
  signInWithEmailAndPassword,
- signOut
+ signOut,
+ onAuthStateChanged,
 
 
  } from "firebase/auth"
@@ -144,5 +145,11 @@ export const signOutUser=async()=>{
     alert(error.message)
   }
 
+}
+
+
+export const authStateChangedListener=(callback)=>{
+if(!callback)return
+return onAuthStateChanged(auth,callback)
 }
 
