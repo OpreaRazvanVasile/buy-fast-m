@@ -1,5 +1,6 @@
 
- import { useEffect,useState} from "react"
+ import { useEffect,useState,useContext} from "react"
+ import { UserContext } from "../context/user-context/user.context"
 
 import InputForm from "../input-form/input-form.componet"
  import Button from "../button/button.componet"
@@ -8,6 +9,8 @@ import { createUsersDocument,auth, singInWithGoogle,redirectSingIn,singInWithEma
     from "../../utils/fierbase/fierbase.utils"
 import { getRedirectResult } from "firebase/auth"    
 import './sign-in.styles.scss'
+
+
 
 
 
@@ -22,6 +25,8 @@ const defaultInputData={
 
 const SingIn=()=>{
     const[formInputData,setFormInputData]=useState(defaultInputData)
+    const {setCurrentUser}=useContext(UserContext)
+    
     const {email,password}=formInputData
         useEffect(()=>{
         const redirectResponse=async function(){
@@ -59,10 +64,14 @@ const SingIn=()=>{
     const submitHandler=async(e)=>{
     e.preventDefault()
 
-        const res=await  singInWithEmail(email,password)
-        console.log(res)
+        const {user}=await  singInWithEmail(email,password)
+        setCurrentUser(user)
+    
+
+        
+        
         setFormInputData(defaultInputData)
-        return res
+        
         
        
     

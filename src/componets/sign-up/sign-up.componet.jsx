@@ -1,10 +1,12 @@
 
-import { useState } from "react"
+import { useState,useContext } from "react"
 import InputForm from "../input-form/input-form.componet"
 import Button from "../button/button.componet"
 import './sign-up.styles.scss'
 import { createUsersDocument,auth, createAuthWithEmail,}
      from "../../utils/fierbase/fierbase.utils"
+
+import { UserContext } from "../context/user-context/user.context"     
 
 
 

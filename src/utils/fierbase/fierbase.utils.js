@@ -5,7 +5,8 @@ import
  GoogleAuthProvider,
  signInWithRedirect,
  createUserWithEmailAndPassword,
- signInWithEmailAndPassword
+ signInWithEmailAndPassword,
+ signOut
 
 
  } from "firebase/auth"
@@ -131,6 +132,17 @@ catch(err){
 
 
  
+
+}
+
+export const signOutUser=async()=>{
+  try{
+    await signOut(auth)
+
+  }
+  catch(error){
+    alert(error.message)
+  }
 
 }
 
