@@ -7,12 +7,15 @@ import { authStateChangedListener } from "../../utils/fierbase/fierbase.utils";
 
 export const UserContext=createContext({
    currnetUser:null,
-   setCurrentUser:()=>{}
+   setCurrentUser:()=>{},
+   isMouseOverEl:false,
+   setIsMouseOverEl:()=>{},
 })
 
 export const UserProvider=({children})=>{
    const[currnetUser,setCurrentUser]=useState(null)
-   const value={currnetUser,setCurrentUser}
+   const [isMouseOverEl,setIsMouseOverEl]=useState(false)
+   const value={currnetUser,setCurrentUser,isMouseOverEl,setIsMouseOverEl}
  
    useEffect(()=>{
       const unsubsribe=authStateChangedListener((users)=>{

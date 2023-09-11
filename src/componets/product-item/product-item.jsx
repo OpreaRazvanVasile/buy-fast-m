@@ -3,6 +3,7 @@ import './product-item.scss'
 
 const ProductItem=({product})=>{
   const {name,imageUrl,price}=product
+  const click=()=>console.log(3)
     return (
         <div className="product-card-container">
             <img src={imageUrl} alt={name}></img>
@@ -11,7 +12,7 @@ const ProductItem=({product})=>{
             <span className="price">{price}</span>
             </div>
             
-            <Button typeButton='inverted'>Add to Card</Button> 
+            <Button  typeButton='inverted'>Add to Card</Button> 
 
         </div>
     )
