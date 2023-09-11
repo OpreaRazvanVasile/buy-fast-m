@@ -6,7 +6,7 @@ import './sign-up.styles.scss'
 import { createUsersDocument,auth, createAuthWithEmail,}
      from "../../utils/fierbase/fierbase.utils"
 
-import { UserContext } from "../context/user-context/user.context"     
+import { UserContext } from "../../contexts/user-context/user.context"     
 
 
 

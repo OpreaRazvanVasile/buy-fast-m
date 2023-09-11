@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
-import { UserProvider } from './componets/context/user-context/user.context';
-
+import { UserProvider } from './contexts/user-context/user.context';
+import { ProductsProvaider } from './contexts/product-context/product-context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
 
     <UserProvider>
+      <ProductsProvaider>
        <App />
+
+      </ProductsProvaider>
        </UserProvider>
    
     

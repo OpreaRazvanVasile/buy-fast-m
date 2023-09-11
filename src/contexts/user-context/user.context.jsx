@@ -1,8 +1,8 @@
 
 import { createContext,useState,useEffect } from "react";
-import {signOutUser } from "../../../utils/fierbase/fierbase.utils";
+import {signOutUser } from "../../utils/fierbase/fierbase.utils";
 import { onAuthStateChanged } from "firebase/auth";
-import { authStateChangedListener } from "../../../utils/fierbase/fierbase.utils";
+import { authStateChangedListener } from "../../utils/fierbase/fierbase.utils";
 
 
 export const UserContext=createContext({
@@ -22,7 +22,7 @@ export const UserProvider=({children})=>{
          
       })
       return unsubsribe
-
+                  
 
    },[])
    return <UserContext.Provider value={value}>{children}</UserContext.Provider>

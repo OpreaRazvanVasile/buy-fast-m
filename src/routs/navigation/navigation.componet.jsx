@@ -1,8 +1,8 @@
 
 import { Outlet } from "react-router";
 import { Link } from "react-router-dom";
-import { ReactComponent as CrownLogo } from "./crown.svg";
-import { UserContext } from "../../componets/context/user-context/user.context";
+import { ReactComponent as CrownLogo } from "../../assets/crown-logo/crown.svg";
+import { UserContext } from "../../contexts/user-context/user.context";
 import {useContext, Fragment } from "react";
 import { signOutUser } from "../../utils/fierbase/fierbase.utils";
 
@@ -15,7 +15,7 @@ const Navigation = () => {
       
     
      const userNameOnMauseOver=(e)=>{
-        console.log(e.target.textContent)
+ 
         const target= e.target
         if(target.textContent==='SIGN OUT'){
             target.textContent=currnetUser.email.slice(0,6).toUpperCase()
@@ -46,6 +46,7 @@ const Navigation = () => {
                      to='/auth' onMouseOver={userNameOnMauseOver} onClick={signOutUser}>SIGN OUT </Link>:
                     <Link className="nav-link"  to='/auth' >SIGN IN</Link>
                     }
+                    <Link className="nav-link" to='/shop'>SHOP</Link>
                    
                 </div>
             </div>

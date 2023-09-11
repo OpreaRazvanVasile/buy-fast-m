@@ -1,6 +1,6 @@
 
  import { useEffect,useState,useContext} from "react"
-  import { UserContext } from "../context/user-context/user.context"
+  import { UserContext } from "../../contexts/user-context/user.context"
 
 
 import InputForm from "../input-form/input-form.componet"
@@ -26,7 +26,7 @@ const defaultInputData={
 
 const SingIn=()=>{
     const[formInputData,setFormInputData]=useState(defaultInputData)
-     const {currnetUser,setCurrentUser}=useContext(UserContext)
+     const {currnetUser}=useContext(UserContext)
     
     const {email,password}=formInputData
         useEffect(()=>{
