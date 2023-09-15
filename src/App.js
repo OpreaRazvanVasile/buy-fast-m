@@ -6,6 +6,7 @@ import Navigation from './routs/navigation/navigation.componet';
 import Auth from './componets/authentification/auth.componet';
 import Shop from './routs/shop/shop.component.jsx';
 
+
 function App() {
   return (
     < Routes >
