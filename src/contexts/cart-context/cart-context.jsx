@@ -1,8 +1,8 @@
-import { useState,createContext } from "react";
+import { useState,createContext,useEffect } from "react";
 
 const addToCart=(cartItems,product)=>{
        const existingCardItem=cartItems.find(item=>item.id===product.id)
-
+     
      if(existingCardItem){
         return cartItems.map(item=>{
            if(item.id===product.id){
@@ -31,7 +31,10 @@ export const CartContex=createContext({
     setIsCartOpen:()=>{},
     cartItems:[],
     setCartItem:()=>{},
-    setAddToCart:()=>{}
+    setAddToCart:()=>{},
+    totalQuantity:0,
+    setTotalQuantity:()=>{},
+    
     
 
    
@@ -43,21 +46,25 @@ export const CartProvaider=({children})=>{
 
    const[isCartOpen,setIsCartOpen]=useState(false)
    const[cartItems,setCartItems]=useState([])
+   const [totalQuantity,setTotalQuantity]=useState(0)
+ 
+
+   useEffect(()=>{
+      setTotalQuantity(()=>{
+         return cartItems.reduce((acc,item)=>acc+item.quantity,0)
+
+      })
+
+   },[cartItems])
    const setAddToCart=(cartItems,product)=>{
     return setCartItems(addToCart(cartItems,product))
-
+    
+  
    }
 
 
-
-   
-
-  
-  
-   
-
    return <CartContex.Provider value={{
-    isCartOpen,setIsCartOpen,cartItems,setAddToCart
+    isCartOpen,setIsCartOpen,cartItems,setAddToCart,totalQuantity
 
 }}>{children}</CartContex.Provider>
 }
