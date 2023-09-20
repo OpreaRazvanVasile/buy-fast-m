@@ -9,8 +9,9 @@ const{id,name,imageUrl,quantity,price}=item
    <img src={imageUrl} alt={name}></img>
    <div className="item-details">
     <span className="name">{name}</span>
-    <span className="quantity">{quantity}</span>
-    <span className="price">{price*quantity}</span>
+    <span className="quantity">Quantity:{quantity}</span>
+    <span className="price">Price:{price}</span>
+    <span className="price-total">Total Price:{price*quantity}</span>
     </div> 
 
   </div>)

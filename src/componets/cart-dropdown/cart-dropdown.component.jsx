@@ -4,11 +4,17 @@ import {useContext} from 'react'
 import { CartContex } from '../../contexts/cart-context/cart-context'
 import CartItem from '../cart-item/cart-item'
 import Button from '../button/button.componet'
+import { useNavigate } from 'react-router'
 
 
 
 const CartDropdown=()=>{
-    const {cartItems}=useContext(CartContex)
+    const {cartItems,setIsCartOpen}=useContext(CartContex)
+    const checkoutNavigation=useNavigate()
+    const goToCheckoutHandler=()=>{
+        setIsCartOpen(false)
+        checkoutNavigation('/checkout')
+    }
     
   
 
@@ -19,7 +25,7 @@ const CartDropdown=()=>{
          <div className='cart-items' >
           {cartItems.map(item=><CartItem item={item}/>)}
           </div>
-          <Button>Go To Checkout</Button>
+          <Button onClick={goToCheckoutHandler}>Go To Checkout</Button>
           </div>
 
           

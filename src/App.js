@@ -5,6 +5,7 @@ import Home from './routs/home/home.componet.jsx';
 import Navigation from './routs/navigation/navigation.componet';
 import Auth from './componets/authentification/auth.componet';
 import Shop from './routs/shop/shop.component.jsx';
+import Checkout from './routs/checkout/checkout.componet';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         </Route>
         <Route path='/auth' element={<Auth/>}></Route>
         <Route path='/shop' element={<Shop/>}></Route>
+        <Route path='/checkout' element={<Checkout/>}></Route>
       </Route>
     </Routes >
   )
