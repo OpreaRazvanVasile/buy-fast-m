@@ -1,3 +1,4 @@
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import { initializeApp } from "firebase/app";
 import
  {getAuth,
@@ -17,6 +18,8 @@ import {
     doc,
     getDoc,
     setDoc,
+   collection,
+   writeBatch,
    
    
 } from "firebase/firestore"
@@ -76,6 +79,8 @@ export const createUsersDocument=async function(userAuth){
  catch(err){
     console.error(err.message)
 }
+
+
 
 
 }
@@ -151,5 +156,21 @@ export const signOutUser=async()=>{
 export const authStateChangedListener=(callback)=>{
 if(!callback)return
 return onAuthStateChanged(auth,callback)
+}
+
+
+export const addCollectionToDb=async(keyToAdd,objectToAdd)=>{
+const collectionRef=collection(db,keyToAdd)
+const batch=writeBatch(db)
+objectToAdd.forEach(object=>{
+  const documentRef=doc(collectionRef,object.title.toLowerCase())
+
+  batch.set(documentRef,object)
+
+
+})
+await batch.commit()
+console.log('Done')
+
 }
 
