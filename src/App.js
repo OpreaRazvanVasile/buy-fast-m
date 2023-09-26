@@ -8,14 +8,14 @@ import Shop from './routs/shop/shop.component';
 import Checkout from './routs/checkout/checkout.component';
 
 
-function App() {
+const App=()=> {
   return (
     < Routes >
       <Route path='/' element={<Navigation />}>
         <Route index element={<Home />}>
         </Route>
         <Route path='/auth' element={<Auth/>}></Route>
-        <Route path='/shop' element={<Shop/>}></Route>
+        <Route path='/shop/*' element={<Shop/>}></Route>
         <Route path='/checkout' element={<Checkout/>}></Route>
       </Route>
     </Routes >

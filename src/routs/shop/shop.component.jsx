@@ -1,22 +1,18 @@
+import { Route,Routes } from "react-router";
 
-import './shop.styles.scss'
-import { useContext } from 'react'
-import { CategoriesContext } from '../../contexts/categories-context/categories.contex'
-import CategoryPreview from '../../componets/category-preview/category-preview.component'
-import { Fragment } from 'react'
+import CategoriesComponent from "../../componets/categories/categories.componet";
+import Category from "../../componets/category-routs/category-routs.componet";
 
 const Shop=()=>{
 
-   const {categories}=useContext(CategoriesContext)
-   const categoriesEntries=Object.entries(categories)
+return(
+    <Routes>
+        <Route index element={<CategoriesComponent/>}></Route>
+        <Route path=":category" element={<Category/>}></Route>
+    </Routes>
+)
 
-      
-        return(
-            <Fragment>
-          {categoriesEntries.map(([title,value])=><CategoryPreview title={title} value={value}></CategoryPreview>)}
-            </Fragment>
-        )
-     
-       
+
 }
+
 export default Shop
