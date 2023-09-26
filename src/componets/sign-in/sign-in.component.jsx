@@ -3,8 +3,8 @@
   import { UserContext } from "../../contexts/user-context/user.context"
 
 
-import InputForm from "../input-form/input-form.componet"
- import Button from "../button/button.componet"
+import InputForm from "../input-form/input-form.component"
+ import Button from "../button/button.component"
 
 import { createUsersDocument,auth, singInWithGoogle,redirectSingIn,singInWithEmail}
     from "../../utils/fierbase/fierbase.utils"
@@ -24,7 +24,7 @@ const defaultInputData={
 }
 
 
-const SingIn=()=>{
+const SignIn=()=>{
     const[formInputData,setFormInputData]=useState(defaultInputData)
      const {currnetUser}=useContext(UserContext)
     
@@ -131,4 +131,4 @@ const SingIn=()=>{
 
 
 
-export default SingIn
+export default SignIn

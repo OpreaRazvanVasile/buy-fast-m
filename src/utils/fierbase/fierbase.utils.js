@@ -18,8 +18,10 @@ import {
     doc,
     getDoc,
     setDoc,
-   collection,
-   writeBatch,
+    collection,
+    writeBatch,
+    query,
+    getDocs
    
    
 } from "firebase/firestore"
@@ -159,18 +161,44 @@ return onAuthStateChanged(auth,callback)
 }
 
 
-export const addCollectionToDb=async(keyToAdd,objectToAdd)=>{
-const collectionRef=collection(db,keyToAdd)
-const batch=writeBatch(db)
-objectToAdd.forEach(object=>{
-  const documentRef=doc(collectionRef,object.title.toLowerCase())
+export const addCollectionToDB=async(collectionKey,objectToAdd,field)=>{
+  const collectionRef=collection(db,collectionKey)
+  const batch=writeBatch(db)// create a batch in db
+  objectToAdd.forEach(obj=>{
+    //{title:'mens',items:[{id:332..,imgUrl:..}]}
+   if(typeof field==='string'){
+     const title=obj[field].toLowerCase() 
+     //Categories=>mens
+     const docRef=doc(collectionRef,title)
+     
+  
+     batch.set(docRef,obj) 
+     //set a batch in categories collection when the name of the document its
+     //the title or a field  and obj its the obj  {title:'mens',items:[{id:332..,imgUrl:..}]}
 
-  batch.set(documentRef,object)
-
-
-})
-await batch.commit()
-console.log('Done')
+   } 
+  })
+  await  batch.commit() 
 
 }
+export const getDocumentFormDB=async(collectionKey)=>{
+  const collectionRef=collection(db,collectionKey)
+  const q=query(collectionRef)
+  const querySnapshot=await getDocs(q)
+  
+  
+ const data= querySnapshot.docs.map(doc=>doc.data())
+ const documetObj={}
+ data.forEach(doc=>{
+ const title=doc['title'].toLowerCase()
+ const items=doc['items']
+ documetObj[title]=items
 
+
+ })
+
+return documetObj
+
+ 
+ 
+}

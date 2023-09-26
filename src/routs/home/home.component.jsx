@@ -1,4 +1,4 @@
-import Directory from "../../componets/directory/directory.componet"
+import Directory from '../../componets/directory/directory.component'
 import categories from './categories.json'
 
 

@@ -1,40 +1,22 @@
 
 import './shop.styles.scss'
-import ProductItem from '../../componets/product-item/product-item'
 import { useContext } from 'react'
-import { ProductsContext } from '../../contexts/product-context/product-context'
+import { CategoriesContext } from '../../contexts/categories-context/categories.contex'
+import CategoryPreview from '../../componets/category-preview/category-preview.component'
+import { Fragment } from 'react'
 
 const Shop=()=>{
 
-    const{products}=useContext(ProductsContext)
-  
+   const {categories}=useContext(CategoriesContext)
+   const categoriesEntries=Object.entries(categories)
 
-    
- 
-    return (
-        <div className='products-container'>
-            
-            
-            {products.map(product=>{
-                 
-                 
-             return (<ProductItem product={product}/>)
-                  
-                  })
-
-              
-
-                
-            }
-                  
-            
-             
-            
       
-                
-                
-        
-        </div>
-    )
+        return(
+            <Fragment>
+          {categoriesEntries.map(([title,value])=><CategoryPreview title={title} value={value}></CategoryPreview>)}
+            </Fragment>
+        )
+     
+       
 }
 export default Shop

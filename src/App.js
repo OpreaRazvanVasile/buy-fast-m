@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.scss';
 import { Routes, Route } from 'react-router';
-import Home from './routs/home/home.componet.jsx';
-import Navigation from './routs/navigation/navigation.componet';
-import Auth from './componets/authentification/auth.componet';
-import Shop from './routs/shop/shop.component.jsx';
-import Checkout from './routs/checkout/checkout.componet';
+import Home from './routs/home/home.component';
+import Navigation from './routs/navigation/navigation.component';
+import Auth from './componets/authentification/auth.component';
+import Shop from './routs/shop/shop.component';
+import Checkout from './routs/checkout/checkout.component';
 
 
 function App() {

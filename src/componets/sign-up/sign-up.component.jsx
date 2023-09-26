@@ -1,12 +1,12 @@
 
 import { useState,useContext } from "react"
-import InputForm from "../input-form/input-form.componet"
-import Button from "../button/button.componet"
+import InputForm from "../input-form/input-form.component"
+import Button from "../button/button.component"
 import './sign-up.styles.scss'
-import { createUsersDocument,auth, createAuthWithEmail,}
+import { createUsersDocument, createAuthWithEmail,}
      from "../../utils/fierbase/fierbase.utils"
 
-import { UserContext } from "../../contexts/user-context/user.context"     
+    
 
 
 
@@ -39,7 +39,7 @@ const SignUp=()=>{
     if(password!==confirmPassword)return alert(`Password and Confirm Password don't match'`)
     
     const response=await createAuthWithEmail(email,password)
-    console.log(response)
+   
     if(response){
     
     if(response.user.displayName===null) response.user.displayName=displayName
