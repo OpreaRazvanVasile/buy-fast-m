@@ -2,7 +2,7 @@
 import { useState,useContext } from "react"
 import InputForm from "../input-form/input-form.component"
 import Button from "../button/button.component"
-import './sign-up.styles.scss'
+import{SignUpCotainer} from'./sign-up.styles.jsx'
 import { createUsersDocument, createAuthWithEmail,}
      from "../../utils/fierbase/fierbase.utils"
 
@@ -51,7 +51,7 @@ const SignUp=()=>{
     
     }
     return (
-        <div className="sign-up-container">
+        <SignUpCotainer>
             
             <h2>Don't have an account?</h2>
             <span>Sign up with email and password</span>
@@ -64,7 +64,7 @@ const SignUp=()=>{
         <Button type='submit' children='Sing Up'/>
        
         </form>
-        </div>
+        </SignUpCotainer>
     )
 }
 

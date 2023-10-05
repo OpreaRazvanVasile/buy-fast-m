@@ -8,6 +8,7 @@ const Shop=()=>{
 return(
     <Routes>
         <Route index element={<CategoriesComponent/>}></Route>
+      
         <Route path=":category" element={<Category/>}></Route>
     </Routes>
 )

@@ -1,13 +1,14 @@
 import SignIn from "../sign-in/sign-in.component";
 import SignUp from "../sign-up/sign-up.component"
-import './auth.styles.scss'
+import { AuthContainer } from "./auth.styles";
+
 
 const Auth=()=>
-<div className="auth-container">
+<AuthContainer>
 <SignIn/>
 <SignUp/>
 
-</div>
+</AuthContainer>
 
 
 export default Auth

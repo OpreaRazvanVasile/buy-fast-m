@@ -9,7 +9,7 @@ import InputForm from "../input-form/input-form.component"
 import { createUsersDocument,auth, singInWithGoogle,redirectSingIn,singInWithEmail}
     from "../../utils/fierbase/fierbase.utils"
 import { getRedirectResult } from "firebase/auth"    
-import './sign-in.styles.scss'
+import {SignInContainer,BtnContainer}from'./sign-in.styles.jsx'
 
 
 
@@ -102,7 +102,7 @@ const SignIn=()=>{
   }
     
         return (
-        <div className="sign-in-container">
+        <SignInContainer>
             
             <h2>Already have an account?</h2>
             <span>Sign in with email and password</span>
@@ -110,15 +110,15 @@ const SignIn=()=>{
         <form onSubmit={submitHandler}>
         <InputForm label="Email" type="email" required name="email" onChange={changeHandler} value={email}></InputForm>
         <InputForm label="Password" type="password"required name="password"value={password} onChange={changeHandler}></InputForm>
-        <div className="btn-container">
+        <BtnContainer>
         <Button type='submit' children='Sign In'/>
-        <Button type='button' typeButton='google'  onClick={logWithGoogle} children='Google'/>
-        <Button type='button' typeButton='redirect' children='Redirect' onClick={signInWithRedirect}/>
-        </div>
+        <Button type='button' typebutton='google'  onClick={logWithGoogle} children='Google'/>
+        <Button type='button' typebutton='redirect' children='Redirect' onClick={signInWithRedirect}/>
+        </BtnContainer>
         </form>
       
    
-        </div>
+        </SignInContainer>
     )
 
 

@@ -10,7 +10,8 @@ import CartDropdown from "../../componets/cart-dropdown/cart-dropdown.component"
 import { CartContex } from "../../contexts/cart-context/cart-context";
 
 
-import './navigation.styles.scss'
+// import './navigation.styles.scss'
+import { NavContainer,LogoConatier,NavLinksContainer,NavLink} from "./navigation.styles";
 
 
 const Navigation = () => {
@@ -61,21 +62,21 @@ const Navigation = () => {
    
     return (
         <Fragment>
-            <div className="navigation">
-                <Link className="logo-container" to='/'>
+            <NavContainer>
+                <LogoConatier to='/'>
                     {<CrownLogo />}
-                </Link>
-                <div className="nav-links-container">
-                <Link className="nav-link" to='/shop'>SHOP</Link>
-                    {currnetUser?<Link className="nav-link"  
-                     to='/auth' onMouseOver={userNameOnMauseOver} onClick={signOutUser}>SIGN OUT </Link>:
-                     <Link className="nav-link"  to='/auth' >SIGN IN</Link>
+                </LogoConatier>
+                <NavLinksContainer>
+                <NavLink to='/shop'>SHOP</NavLink>
+                    {currnetUser?<NavLink
+                     to='/auth' onMouseOver={userNameOnMauseOver} onClick={signOutUser}>SIGN OUT </NavLink>:
+                     <NavLink  to='/auth' >SIGN IN</NavLink>
                     }
                <IconCart setCart={setCart}/>   
                    
                    
-                </div>
-            </div>
+                </NavLinksContainer>
+            </NavContainer>
                 { isCartOpen?<CartDropdown/>:null}
             <Outlet />
         </Fragment>

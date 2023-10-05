@@ -1,8 +1,8 @@
 
 import ProductItem from "../product-item/product-item.component"
-import { Link } from "react-router-dom"
 
-import './category-preview.styles.scss'
+
+import {CategoryPreviewConatiner,TitleLink,Preview} from'./category-preview.styles.jsx'
 
 const CategoryPreview=({title,value})=>{
     
@@ -19,13 +19,11 @@ const CategoryPreview=({title,value})=>{
        }
 
     return (
-        <div className="category-preview-container" key={title}>
-                  <h2 className="title">
-                    <span>
-                        <Link to={`/shop/${title}`}>{title.toLocaleUpperCase()}</Link>
-                     </span></h2>
-           
-                 <div className='preview'>
+        <CategoryPreviewConatiner key={title}>
+               
+                  
+              <TitleLink  to={`/shop/${title}`}>{title.toLocaleUpperCase()}</TitleLink>
+             <Preview>
                 {    
                     lastFourElements(value).map(product=>{
                   
@@ -33,8 +31,9 @@ const CategoryPreview=({title,value})=>{
                      return(  <ProductItem key={product.id} product={product}></ProductItem>)   
                   })
                 }
-                </div>
-                </div>
+                </Preview>
+                <br/>
+                </CategoryPreviewConatiner>
     )
      
 
