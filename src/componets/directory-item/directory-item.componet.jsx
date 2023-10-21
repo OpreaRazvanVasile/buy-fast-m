@@ -15,7 +15,7 @@ const DirectoryItem = ({ category }) => {
     const shopNavigation=()=>{
        return nav('/shop')
     }
-     console.log(category)
+    
   
     return (
         <ItemContainer>

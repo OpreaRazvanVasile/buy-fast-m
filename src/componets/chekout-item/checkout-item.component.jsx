@@ -11,6 +11,8 @@ RemoveButton} from "./checkout-item.styles.jsx"
 import { CartContex } from '../../contexts/cart-context/cart-context'
 import { useContext } from 'react'
 
+
+
 const CheckoutItem=({item})=>{
     const{id,name,imageUrl,quantity,price}=item
     const {cartItems,setAddToCart,setRemoveCartItem,setRemoveItemOnCLick}=useContext(CartContex)
