@@ -64,13 +64,13 @@ export const db=getFirestore()//fierstore DataBase
 
 export const createUsersDocument=async function(userAuth){
     const docRef=doc(db,'users',userAuth.uid)
-    console.log(docRef)
+  
     const docSnapShot=await getDoc(docRef)
-    console.log(docSnapShot.exists())
+   
 
     try{
     if(!docSnapShot.exists()){
-        console.log(userAuth)
+    
         const{displayName,email}=userAuth
         const setdate=new Date()
         const doc=await setDoc(docRef,{displayName,email,date:setdate})
@@ -124,7 +124,7 @@ try{
 
 catch(err){
 
- console.log(err)
+ 
  if(err.code==='auth/user-not-found'){
   alert("User are not found in the datebase")
  }
@@ -173,7 +173,7 @@ export const addCollectionToDB=async(collectionKey,objectToAdd,field)=>{
      
   
      batch.set(docRef,obj) 
-     //set a batch in categories collection when the name of the document its
+     //set a batch in categories colection when the name of the document its
      //the title or a field  and obj its the obj  {title:'mens',items:[{id:332..,imgUrl:..}]}
 
    } 
@@ -189,15 +189,21 @@ export const getDocumentFormDB=async(collectionKey)=>{
   
  const data= querySnapshot.docs.map(doc=>doc.data())
  const documetObj={}
- data.forEach(doc=>{
- const title=doc['title'].toLowerCase()
- const items=doc['items']
- documetObj[title]=items
+ if(collectionKey!=='directory'){
+  data.forEach(doc=>{
+    const title=doc['title'].toLowerCase()
+    const items=doc['items']
+    documetObj[title]=items
+   
+   
+    })
+    return documetObj
+   
+ }
+ else return [...data]
 
 
- })
 
-return documetObj
 
  
  

@@ -28,7 +28,7 @@ const SignUp=()=>{
         event.preventDefault()
        const{name,value}=event.target
        setFormInputData(()=>{return{...formInputData,[name]:value}})
-       console.log(formInputData)
+    
     
       
        }
