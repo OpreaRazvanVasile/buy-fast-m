@@ -1,5 +1,5 @@
 import Directory from '../../componets/directory/directory.component'
-// import categories from './categories.json'
+import categories from './categories.json'
 import { getDocumentFormDB } from '../../utils/fierbase/fierbase.utils'
 import { useEffect,useState } from 'react'
 
@@ -10,7 +10,10 @@ const Home = () => {
     useEffect(()=>{
         const getDirectoryData=async function(){
           const data= await getDocumentFormDB('directory')
+        
+    
           setData(data)
+        
 
         }
        getDirectoryData()
@@ -18,7 +21,7 @@ const Home = () => {
    
     return (
         <div className="App">
-            <Directory categories={data}></Directory>
+            <Directory key={data.id} categories={data}></Directory>
         </div>
     )
 }
